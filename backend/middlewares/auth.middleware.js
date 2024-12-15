@@ -5,7 +5,7 @@ const blacklistTokenModel = require("../models/blacklistToken.model");
 const captainModel = require("../models/captain.model");
 
 module.exports.authUser = async (req, res, next) => {
-    const token = req.cookies.token || req.headers.authorization.split(' ')[1];
+    const token = req.cookies.token || req.headers.authorization?.split(' ')[1];
     if (!token) return res.status(401).json({ msg: "Unauthorized" });
 
     const blacklistToken = await blacklistTokenModel.findOne({ token: token });
@@ -24,7 +24,8 @@ module.exports.authUser = async (req, res, next) => {
 
 
 module.exports.authCaptian = async (req, res, next) => {
-    const token = req.cookies.token || req.headers.authCaptian.split(' ')[1];
+    // const token = req.cookies.token || req.headers.authCaptian.split(' ')[1];
+    const token = req.cookies.token || req.headers.authorization?.split(' ')[ 1 ];
     if (!token) return res.status(401).json({ msg: "Unauthorized" });
 
     const blacklistToken = await blacklistTokenModel.findOne({ token: token });
