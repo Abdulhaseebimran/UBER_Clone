@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserDataContext } from "../context/UserContext";
 import { SocketContext } from "../context/SocketContext";
-// import LiveTracking from '../components/LiveTracking';
+import LiveTracking from '../components/LiveTracking';
 import axios from "axios";
 
 const Home = () => {
@@ -223,16 +223,17 @@ const Home = () => {
       />
       <div
         className="h-screen w-screen"
-        onClick={() => {
-          setVehiclePanelOpen(false);
-        }}
+        // onClick={() => {
+        //   setVehiclePanelOpen(false);
+        // }}
       >
         {/* image for temporary use */}
-        <img
+        <LiveTracking />
+        {/* <img
           className="h-full w-full object-cover"
           src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif"
           alt=""
-        />
+        /> */}
       </div>
       <div className="flex flex-col justify-end h-screen absolute top-0 w-full">
         <div className="h-[30%] p-6 bg-white relative">
@@ -256,9 +257,7 @@ const Home = () => {
               className="bg-[#eee] px-12 py-2 rounded-lg text-lg w-full mt-5"
               type="text"
               value={pickup}
-              onChange={(e) => {
-                setPickup(e.target.value);
-              }}
+              onChange={handlePickupChange}
               onClick={() => {
                 setPanelOpen(true);
               }}
@@ -268,9 +267,7 @@ const Home = () => {
               className="bg-[#eee] px-12 py-2 rounded-lg text-lg w-full mt-3"
               type="text"
               value={destination}
-              onChange={(e) => {
-                setDestination(e.target.value);
-              }}
+              onChange={handleDestinationChange}
               onClick={() => {
                 setPanelOpen(true);
               }}
